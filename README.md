@@ -21,14 +21,13 @@
 
 ## 🛠️ Tech Stack
 
-| Component          | Technology                                |
+| Component          | Technology                                 |
 |--------------------|--------------------------------------------|
 | Language           | Java                                       |
-| Gap Detection      | Alpha Vantage API (`TIME_SERIES_DAILY`)    |
+| Gap Detection      | Alpha Vantage API                          |
 | News Aggregation   | NewsAPI.org (with domain filtering)        |
 | AI Summarization   | Hugging Face `facebook/bart-large-cnn`     |
 | Email Sending      | Jakarta Mail (with Gmail SMTP & App Pass)  |
-| JSON Handling      | Jackson / org.json                         |
 
 ---
 
