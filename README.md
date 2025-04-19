@@ -71,7 +71,7 @@ You must update the following values in the code:
 
 - In `EmailService.java`:
   ```java
-  final String USER_EMAIL = "<your_email>";
+  final String EMAIL = "<your_email>";
   final String EMAIL_PASSWORD = "<your_app_password>";
   ```
 
