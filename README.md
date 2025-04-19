@@ -120,6 +120,9 @@ You must update the following values in the code:
 
 ---
 
+❗ **Disclaimer:**  
+This is *not* a stock recommendation tool. It is designed purely to **inform traders/investors** about market gap openings and associated news, helping them stay aware and make their **own decisions**.
+
 ## 🤝 Contributing
 
 Pull requests are welcome! Open an issue for feature requests, improvements, or bug reports.
