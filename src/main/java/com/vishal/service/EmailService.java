@@ -6,7 +6,7 @@ import java.util.Properties;
 
 public class EmailService {
     public static void sendEmail(String toEmail, String subject, String body) {
-        final String USER_EMAIL = "********@gmail.com"; // Update your email address
+        final String EMAIL = "********@gmail.com"; // Update your email address
         final String EMAIL_PASSWORD = "**** **** **** ****"; // Update your email password
 
         Properties properties = new Properties();
@@ -18,13 +18,13 @@ public class EmailService {
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(USER_EMAIL, EMAIL_PASSWORD);
+                return new PasswordAuthentication(EMAIL, EMAIL_PASSWORD);
             }
         });
 
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(USER_EMAIL));
+            message.setFrom(new InternetAddress(EMAIL));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
             message.setSubject(subject);
             message.setText(body);
