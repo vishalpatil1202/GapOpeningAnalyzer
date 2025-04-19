@@ -101,8 +101,8 @@ You must update the following values in the code:
 ### Steps:
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/gap-opening-analyzer.git
-   cd gap-opening-analyzer
+   git clone https://github.com/vishalpatil1202/GapOpeningAnalyzer.git
+   cd GapOpeningAnalyzer
    ```
 
 2. Compile and run:
