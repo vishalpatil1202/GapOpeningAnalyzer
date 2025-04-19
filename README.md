@@ -1,5 +1,5 @@
 
-# 📈 Gap Opening Analyzer – Your AI-Powered Stock Gap Assistant
+# 📈 Gap Opening Analyzer
 
 **Gap Opening Analyzer** is a Java-based AI Agent that analyzes stock market gap openings, fetches and summarizes relevant financial news, and sends out concise reports via email — all automatically.
 
