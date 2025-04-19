@@ -7,7 +7,7 @@
     <groupId>com.vishal</groupId>
     <artifactId>GapOpeningAnalyzer</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Nifty Gap Analyzer</name>
+    <name>Gap Opening Analyzer</name>
 
     <dependencies>
         <dependency>
