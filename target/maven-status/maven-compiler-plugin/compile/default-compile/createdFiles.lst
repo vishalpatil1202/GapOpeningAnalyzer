@@ -1,0 +1,7 @@
+com\vishal\service\EmailService$1.class
+com\vishal\service\EmailService.class
+com\vishal\App.class
+com\vishal\service\AlphaVantageService.class
+com\vishal\model\StockData.class
+com\vishal\service\StockNewsService.class
+com\vishal\util\NewsSummarizer.class
