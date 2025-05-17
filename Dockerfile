@@ -1,14 +1,22 @@
-# Use a lightweight OpenJDK 17 image
-FROM eclipse-temurin:17-jdk-alpine
+# First stage: Build the application
+FROM maven:3.9.6-eclipse-temurin-17 as builder
 
-# Create app directory
 WORKDIR /app
 
-# Copy the packaged JAR file
-COPY target/GapOpeningAnalyzer-0.0.1-SNAPSHOT.jar app.jar
+# Copy all project files
+COPY . .
 
-# Expose port (optional)
+# Package the app, skipping tests
+RUN mvn clean package -DskipTests
+
+# Second stage: Run the application
+FROM eclipse-temurin:17-jdk-alpine
+
+WORKDIR /app
+
+# Copy JAR from the builder stage
+COPY --from=builder /app/target/GapOpeningAnalyzer-0.0.1-SNAPSHOT.jar app.jar
+
 EXPOSE 8080
 
-# Run the jar file
 ENTRYPOINT ["java", "-jar", "app.jar"]
