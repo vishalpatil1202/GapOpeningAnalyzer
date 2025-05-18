@@ -37,8 +37,8 @@ public class ScheduledTaskRunner {
         this.subscriberRepository = subscriberRepository;
     }
 
-    // @Scheduled(cron = "0 0 9 * * ?") 
-    @Scheduled(fixedRate = 300000) 
+    // @Scheduled(fixedRate = 300000) 
+    @Scheduled(cron = "0 30 9 * * ?")
     public void executeDailyTask() {
         String[] symbols = {"HDFCBANK.BSE"};
         StringBuilder finalReport = new StringBuilder();
