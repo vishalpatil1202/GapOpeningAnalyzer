@@ -40,7 +40,7 @@ public class ScheduledTaskRunner {
     // @Scheduled(fixedRate = 300000) 
     @Scheduled(cron = "0 30 9 * * ?")
     public void executeDailyTask() {
-        String[] symbols = {"HDFCBANK.BSE"};
+        String[] symbols = {"HDFCBANK.BSE", "RELIANCE.BSE", "TCS.BSE", "INFY.BSE", "SBIN.BSE", "WIPRO.BSE", "ICICIBANK.BSE", "TATASTEEL.BSE", "AXISBANK.BSE", "ASIANPAINT.BSE"};
         StringBuilder finalReport = new StringBuilder();
         boolean anySignificantGap = false;
 
@@ -55,7 +55,7 @@ public class ScheduledTaskRunner {
                 double gap = ((stockData.getOpen() - stockData.getPreviousClose()) / stockData.getPreviousClose()) * 100;
                 System.out.printf("Gap: %.2f%%\n", gap);
 
-                if (Math.abs(gap) > 0.1) {
+                if (Math.abs(gap) > 0.5) {
                     anySignificantGap = true;
 
                     String rawNews = newsService.fetchStockNews(symbol);
