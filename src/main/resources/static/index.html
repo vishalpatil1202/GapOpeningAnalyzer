@@ -1,78 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Subscribe for Stock Alerts</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GapOpeningAnalyzer – Stay Ahead</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      --glass-bg: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.1);
+      --blur: blur(18px);
+      --primary: #3b82f6;
+      --text-light: #ffffff;
+      --accent: #f59e0b;
+      --green: #10b981;
+      --red: #ef4444;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      background-color: #f5f5f5;
+      height: 100vh;
+      background: var(--background);
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+    }
+
+    .container {
+      background: var(--glass-bg);
+      border: 1px solid var(--border);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      border-radius: 20px;
+      padding: 40px 30px;
+      width: 90%;
+      max-width: 420px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
       text-align: center;
+      animation: fadeIn 1s ease;
     }
-    form {
-      background: white;
-      display: inline-block;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
+
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 26px;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    p.description {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #e5e7eb;
+    }
+
     input[type="email"] {
-      padding: 10px;
-      width: 250px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    button {
+      width: 100%;
+      padding: 14px;
       margin-top: 10px;
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #4CAF50;
       border: none;
-      color: white;
-      border-radius: 4px;
-      cursor: pointer;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      background-color: rgba(255,255,255,0.1);
+      color: #fff;
     }
-    .success { color: green; }
-    .error { color: red; }
+
+    input::placeholder {
+      color: #cbd5e1;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 14px 0;
+      font-size: 15px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+    }
+
+    #message {
+      margin-top: 16px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .success {
+      color: var(--green);
+    }
+
+    .error {
+      color: var(--red);
+    }
+
+    .info-section {
+      margin-top: 25px;
+      font-size: 13px;
+      color: #9ca3af;
+      line-height: 1.5;
+    }
+
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 22px;
+      }
+
+      .container {
+        padding: 30px 20px;
+      }
+    }
   </style>
 </head>
 <body>
 
-<h2>📈 Subscribe to Daily Stock Gap Alerts</h2>
+  <div class="container">
+    <h1>Gap Opening Analyzer</h1>
+    <p class="description">
+      Be the first to know when Nifty 50 stocks show gap openings. Get curated summaries of news events behind the move—directly in your inbox.
+    </p>
 
-<form id="subscribe-form">
-  <input type="email" id="email" placeholder="Enter your email" required />
-  <br/>
-  <button type="submit">Subscribe</button>
-</form>
+    <form id="subscribe-form">
+      <input type="email" id="email" placeholder="Enter your email address" required />
+      <button type="submit">Subscribe Now</button>
+    </form>
 
-<p id="message"></p>
+    <p id="message"></p>
 
-<script>
-  document.getElementById("subscribe-form").addEventListener("submit", async function(e) {
-    e.preventDefault();
-    const email = document.getElementById("email").value;
-    const response = await fetch("/subscribe", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email })
+    <div class="info-section">
+      <strong>What this tool does:</strong><br>
+      Analyzes gap openings in the stock market, fetches relevant financial news, and emails you a daily report—all automatically.
+      <br><br>
+      <strong>Why it matters:</strong><br>
+      Gap openings can signal major market movements, but finding the reasons is time-consuming. Let this tool do the work for you.
+    </div>
+  </div>
+
+  <script>
+    // Attach submit event listener to the form
+    document.getElementById("subscribe-form").addEventListener("submit", async function(e) {
+      e.preventDefault(); // Prevent the default form submit reload
+
+      const email = document.getElementById("email").value;
+      const messageEl = document.getElementById("message");
+
+      try {
+        // Send POST request to backend with the email in JSON body
+        const response = await fetch("/subscribe", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email })
+        });
+
+        if (response.ok) {
+          messageEl.textContent = "Subscribed successfully!";
+          messageEl.className = "success";
+        } else {
+          messageEl.textContent = "Failed to subscribe.";
+          messageEl.className = "error";
+        }
+      } catch (error) {
+        // Handle network errors or server issues
+        messageEl.textContent = "Error connecting to server.";
+        messageEl.className = "error";
+      }
+
+      // Clear the email input field
+      document.getElementById("email").value = "";
     });
-
-    const messageEl = document.getElementById("message");
-
-    if (response.ok) {
-      messageEl.textContent = "Subscribed successfully!";
-      messageEl.className = "success";
-    } else {
-      messageEl.textContent = "Failed to subscribe.";
-      messageEl.className = "error";
-    }
-
-    document.getElementById("email").value = "";
-  });
-</script>
+  </script>
 
 </body>
 </html>
