@@ -55,7 +55,7 @@ public class ScheduledTaskRunner {
                 double gap = ((stockData.getOpen() - stockData.getPreviousClose()) / stockData.getPreviousClose()) * 100;
                 System.out.printf("Gap: %.2f%%\n", gap);
 
-                if (Math.abs(gap) > 0.5) {
+                if (Math.abs(gap) > 0.1) {
                     anySignificantGap = true;
 
                     String rawNews = newsService.fetchStockNews(symbol);
