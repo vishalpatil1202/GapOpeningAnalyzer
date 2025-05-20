@@ -38,9 +38,9 @@ public class ScheduledTaskRunner {
     }
 
     // @Scheduled(fixedRate = 300000) 
-    @Scheduled(cron = "0 30 9 * * ?")
+    @Scheduled(cron = "0 50 20 * * ?")
     public void executeDailyTask() {
-        String[] symbols = {"HDFCBANK.BSE", "RELIANCE.BSE", "TCS.BSE", "INFY.BSE", "SBIN.BSE", "WIPRO.BSE", "ICICIBANK.BSE", "TATASTEEL.BSE", "AXISBANK.BSE", "ASIANPAINT.BSE"};
+        String[] symbols = {"HDFCBANK.BSE", "RELIANCE.BSE"};
         StringBuilder finalReport = new StringBuilder();
         boolean anySignificantGap = false;
 
