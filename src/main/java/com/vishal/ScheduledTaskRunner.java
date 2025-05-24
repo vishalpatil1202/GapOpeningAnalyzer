@@ -39,7 +39,7 @@ public class ScheduledTaskRunner {
     }
 
 //    @Scheduled(fixedRate = 300000)
-    @Scheduled(cron = "0 0 21 * * ?", zone = "Asia/Kolkata")
+    @Scheduled(cron = "0 15 23 * * ?", zone = "Asia/Kolkata")
     public void executeDailyTask() {
         String[] symbols = {"HDFCBANK.BSE", "RELIANCE.BSE"};
         List<StockData> gappedStocks = new ArrayList<>();
