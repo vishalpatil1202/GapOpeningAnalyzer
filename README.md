@@ -72,6 +72,22 @@ GapOpeningAnalyzer/
 
 ---
 
+## ⚙️ Configuration
+This application uses environment variables for sensitive credentials and configuration. Ensure these are properly set in your local environment, .env file, or cloud deployment settings.
+```
+spring.datasource.url=<UPDATE_YOUR_DATASOURCE_URL>
+spring.datasource.username=<UPDATE_DATASOURCE_USERNAME>
+spring.datasource.password=<UPDATE_DATASOURCE_PASSWORD>
+alphavantage.apiKey=<UPDATE_ALPHA_VANTAGE_API_KEY>
+newsapi.apiKey=<UPDATE_NEWSORG_API_KEY>
+mail.username=<UPDATE_SENDER_EMAIL_ID>
+mail.password=<UPDATE_SENDER_GMAIL_APP_PASSWORD>
+huggingface.apiToken=<UPDATE_HUGGING_FACE_API_TOKEN>
+```
+> Note: ℹ️ Replace the values with your actual credentials. Never commit real secrets to source code.
+
+---
+
 ## 🔑 How to Get the Required API Keys
 
 | Service         | How to Register                                       |
