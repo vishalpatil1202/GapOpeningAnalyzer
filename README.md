@@ -82,7 +82,7 @@ mail.username=<UPDATE_SENDER_EMAIL_ID>
 mail.password=<UPDATE_SENDER_GMAIL_APP_PASSWORD>
 huggingface.apiToken=<UPDATE_HUGGING_FACE_API_TOKEN>
 ```
-> Note: ℹ️ Replace the values with your actual credentials. Never commit real secrets to source code.
+> Note: Replace the values with your actual credentials. Never commit real secrets to source code.
 
 ---
 
@@ -110,7 +110,6 @@ huggingface.apiToken=<UPDATE_HUGGING_FACE_API_TOKEN>
 1. Clone the repository:
    ```bash
    git clone https://github.com/vishalpatil1202/GapOpeningAnalyzer.git
-   cd GapOpeningAnalyzer
    ```
 
 2. Compile and run:
