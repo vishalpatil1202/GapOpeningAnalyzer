@@ -41,33 +41,31 @@ GapOpeningAnalyzer/
 │   │   ├── java/
 │   │   │   └── com/
 │   │   │       └── vishal/
-│   │   │           └── AppConfig.java
-|   |   |           ├── GapOpeningAnalyzerApplication.java
-|   |   |           ├── ScheduledTaskRunner.java
-│   │   │               ├── controller/
-│   │   │               │   └── EmailSubscriptionController.java
+│   │   │           └── AppConfig.java                                # Spring configuration class
+|   |   |           ├── GapOpeningAnalyzerApplication.java            # Main entry point of the Spring Boot application
+|   |   |           ├── ScheduledTaskRunner.java                      # Scheduler to trigger stock analysis at intervals
+│   │   │               ├── controller/            
+│   │   │               │   └── EmailSubscriptionController.java      # Handles subscription form requests
 │   │   │               ├── dto/
-|   |   |               |   └── EmailSubscriptionRequest.java
+|   |   |               |   └── EmailSubscriptionRequest.java         # DTO for receiving email input from subscription form
 │   │   │               ├── exception/
-|   |   |               |   └── ValidationExceptionHandler.java
+|   |   |               |   └── ValidationExceptionHandler.java       # Handles validation and custom exceptions globally
 │   │   │               ├── model/
-│   │   │               │   ├── EmailSubscriber.java
-│   │   │               │   └── StockData.java
+│   │   │               │   ├── EmailSubscriber.java                  # Entity model representing an email subscriber
+│   │   │               │   └── StockData.java                        # Model to store structured stock data 
 │   │   │               ├── repository/
-|   |   |               |   └── EmailSubscriberRepository.java
+|   |   |               |   └── EmailSubscriberRepository.java        # JPA repository for email subscriptions
 │   │   │               ├── service/
-│   │   │               │   ├── AlphaVantageService.java
-│   │   │               │   ├── EmailService.java
-│   │   │               │   ├── NewsService.java
-|   |   |               |   └── SummarizationService.java
-│   │   │               ├── utils/
-│   │   │               │   └── NewsSummarizer.java
+│   │   │               │   ├── AlphaVantageService.java              # Fetches gap-up/down stock data from Alpha Vantage API
+│   │   │               │   ├── EmailService.java                     # Sends formatted reports to subscriber emails
+│   │   │               │   ├── NewsService.java                      # Fetches related news using NewsAPI
+|   |   |               |   └── SummarizationService.java             # Summarises fetched news using Hugging Face model
 │   │   └── resources/
 |   |       ├── static
-|   |       |   └── index.html
-│   │       ├── application.properties
-├── Dockerfile
-└── pom.xml
+|   |       |   └── index.html                                        # Front-end form for email subscription
+│   │       ├── application.properties                                # Environment configuration 
+├── Dockerfile                                                        # Docker setup for containerised deployment
+└── pom.xml                                                           # Maven dependencies and build configuration
 ```
 
 ---
