@@ -38,7 +38,8 @@ public class ScheduledTaskRunner {
         this.subscriberRepository = subscriberRepository;
     }
 
-    @Scheduled(fixedRate = 300000)
+//    @Scheduled(fixedRate = 300000)
+    @Scheduled(cron = "0 0 21 * * ?", zone = "Asia/Kolkata")
     public void executeDailyTask() {
         String[] symbols = {"HDFCBANK.BSE", "RELIANCE.BSE"};
         List<StockData> gappedStocks = new ArrayList<>();
