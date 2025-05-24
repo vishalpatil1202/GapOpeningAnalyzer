@@ -7,11 +7,12 @@ import com.vishal.service.AlphaVantageService;
 import com.vishal.service.EmailService;
 import com.vishal.service.NewsService;
 import com.vishal.service.SummarizationService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.*;
 
 @Component
 public class ScheduledTaskRunner {
@@ -37,11 +38,11 @@ public class ScheduledTaskRunner {
         this.subscriberRepository = subscriberRepository;
     }
 
-    // @Scheduled(fixedRate = 300000) 
-    @Scheduled(cron = "0 30 9 ? * MON-FRI", zone = "Asia/Kolkata")
+    @Scheduled(fixedRate = 300000)
     public void executeDailyTask() {
-        String[] symbols = {"HDFCBANK.BSE", "RELIANCE.BSE", "TCS.BSE", "INFY.BSE", "SBIN.BSE"};
-        StringBuilder finalReport = new StringBuilder();
+        String[] symbols = {"HDFCBANK.BSE", "RELIANCE.BSE"};
+        List<StockData> gappedStocks = new ArrayList<>();
+        Map<String, String> summaries = new HashMap<>();
         boolean anySignificantGap = false;
 
         for (String symbol : symbols) {
@@ -49,55 +50,67 @@ public class ScheduledTaskRunner {
             StockData stockData = alphaVantageService.getStockData(symbol);
 
             if (stockData != null) {
-                System.out.println("Stock Data Fetched:");
-                System.out.println(stockData);
-
                 double gap = ((stockData.getOpen() - stockData.getPreviousClose()) / stockData.getPreviousClose()) * 100;
-                System.out.printf("Gap: %.2f%%\n", gap);
 
                 if (Math.abs(gap) > 0.1) {
                     anySignificantGap = true;
-
                     String rawNews = newsService.fetchStockNews(symbol);
-                    System.out.println("rawNews >>> " + rawNews);
                     String summary;
+
                     if (rawNews == null || rawNews.trim().isEmpty()) {
                         summary = "No relevant news found.";
                     } else {
                         try {
                             summary = summarizationService.summarize(rawNews);
                         } catch (Exception e) {
-                            System.err.println("Summarization failed for " + symbol + ": " + e.getMessage());
                             summary = "Could not generate summary.";
                         }
                     }
 
-                    finalReport.append("Gap Opening Detected for ").append(symbol).append(":\n")
-                            .append("Open Price: ").append(stockData.getOpen()).append("\n")
-                            .append("Previous Close: ").append(stockData.getPreviousClose()).append("\n")
-                            .append(String.format("Gap: %.2f%%\n", gap))
-                            .append("News Summary:\n").append(summary).append("\n\n")
-                            .append("----------------------------------------------------\n\n");
-                } else {
-                    System.out.println("No significant gap for " + symbol);
+                    stockData.setSymbol(symbol);
+                    gappedStocks.add(stockData);
+                    summaries.put(symbol, summary);
                 }
-            } else {
-                System.out.println("Failed to fetch stock data for " + symbol);
             }
         }
 
         if (anySignificantGap) {
-            System.out.println("Sending consolidated email...");
-
             List<EmailSubscriber> subscribers = subscriberRepository.findAll();
+            String htmlReport = buildHtmlReport(gappedStocks, summaries);
 
             for (EmailSubscriber subscriber : subscribers) {
-                String recipientEmail = subscriber.getEmail();
-                emailService.sendEmail(recipientEmail, "Gap Opening Report", finalReport.toString());
+                emailService.sendEmail(subscriber.getEmail(), "📊 Gap Opening Report", htmlReport);
             }
 
+            System.out.println("Email sent to subscribers.");
         } else {
-            System.out.println("No significant gaps found in any stock. Email not sent.");
+            System.out.println("No significant gaps found. Email not sent.");
         }
+    }
+
+    private String buildHtmlReport(List<StockData> gappedStocks, Map<String, String> summaries) {
+        StringBuilder html = new StringBuilder();
+        html.append("<html><body>");
+        html.append("<div style='font-family:Arial,sans-serif;'>");
+
+        for (StockData stock : gappedStocks) {
+            String symbol = stock.getSymbol();
+            double gap = ((stock.getOpen() - stock.getPreviousClose()) / stock.getPreviousClose()) * 100;
+            String summary = summaries.getOrDefault(symbol, "No summary available.");
+
+            html.append("<div style='border:1px solid #ddd;padding:15px;margin-top:15px;border-radius:8px;'>")
+                    .append("<h3>").append(symbol).append("</h3>")
+                    .append("<p><strong>Open Price:</strong> ₹").append(stock.getOpen()).append("</p>")
+                    .append("<p><strong>Previous Close:</strong> ₹").append(stock.getPreviousClose()).append("</p>")
+                    .append(String.format("<p><strong>Gap:</strong> <span style='color:red;'>%.2f%%</span></p>", gap))
+                    .append("<p><strong>News Summary:</strong></p>")
+                    .append("<div style='background:#f4f4f4;padding:10px;border-left:4px solid #0053a0;'>")
+                    .append(summary)
+                    .append("</div>")
+                    .append("</div>");
+        }
+
+        html.append("</div></body></html>");
+        return html.toString();
     }
 }
