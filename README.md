@@ -63,7 +63,8 @@ GapOpeningAnalyzer/
 |   |   |           ├── GapOpeningAnalyzerApplication.java            # Main entry point of the Spring Boot application
 |   |   |           ├── ScheduledTaskRunner.java                      # Scheduler to trigger stock analysis at intervals
 │   │   │               ├── controller/            
-│   │   │               │   └── EmailSubscriptionController.java      # Handles subscription form requests
+│   │   │               │   ├── EmailSubscriptionController.java      # Handles subscription form requests
+|   |   |               |   └── HealthController.java                 # Health check endpoint for monitoring
 │   │   │               ├── dto/
 |   |   |               |   └── EmailSubscriptionRequest.java         # DTO for receiving email input from subscription form
 │   │   │               ├── exception/
