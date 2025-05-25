@@ -135,7 +135,7 @@ huggingface.apiToken=<UPDATE_HUGGING_FACE_API_TOKEN>
    ```bash
    # Navigate to the project directory
    cd GapOpeningAnalyzer
-   # Package the project (optional)
+   # Package the project
    mvn clean install
    # Run the application
    mvn spring-boot:run
@@ -145,7 +145,7 @@ huggingface.apiToken=<UPDATE_HUGGING_FACE_API_TOKEN>
 
 ## ❗ Disclaimer:
 
-This is *not* a stock recommendation tool. It is designed purely to **inform traders/investors** about market gap openings and associated news, helping them stay aware and make their **own decisions**.
+This is *not* a stock recommendation tool. It is designed purely to inform traders/investors about market gap openings and associated news, helping them stay aware and make their own decisions.
 
 ---
 
