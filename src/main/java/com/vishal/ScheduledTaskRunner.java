@@ -39,9 +39,9 @@ public class ScheduledTaskRunner {
     }
 
 //    @Scheduled(fixedRate = 300000)
-    @Scheduled(cron = "0 15 23 * * ?", zone = "Asia/Kolkata")
+    @Scheduled(cron = "0 30 6 * * ?", zone = "Asia/Kolkata")
     public void executeDailyTask() {
-        String[] symbols = {"HDFCBANK.BSE", "RELIANCE.BSE"};
+        String[] symbols = {"HDFCBANK.BSE", "RELIANCE.BSE", "TCS.BSE", "INFY.BSE", "SBIN.BSE", "WIPRO.BSE", "ICICIBANK.BSE", "TATASTEEL.BSE", "AXISBANK.BSE", "ASIANPAINT.BSE"};
         List<StockData> gappedStocks = new ArrayList<>();
         Map<String, String> summaries = new HashMap<>();
         boolean anySignificantGap = false;
@@ -53,7 +53,7 @@ public class ScheduledTaskRunner {
             if (stockData != null) {
                 double gap = ((stockData.getOpen() - stockData.getPreviousClose()) / stockData.getPreviousClose()) * 100;
 
-                if (Math.abs(gap) > 0.1) {
+                if (Math.abs(gap) > 1) {
                     anySignificantGap = true;
                     String rawNews = newsService.fetchStockNews(symbol);
                     String summary;
