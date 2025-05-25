@@ -7,6 +7,7 @@
 ## ✨ Features
 
 - 🔍 **Gap Detection**: Compares today's open price with the previous day's close to identify gap ups or gap downs.
+- 📈 **1% Gap Threshold**: Filters out minor fluctuations by only considering gaps greater than or equal to ±1%, helping focus on meaningful market movements.
 - 📰 **News Fetching**: Automatically queries financial news from trusted sources like:
   - Moneycontrol
   - Economic Times
