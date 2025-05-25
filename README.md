@@ -18,6 +18,24 @@
 
 ---
 
+## 📋 Supported Stocks
+
+Currently, the AI agent tracks only 10 selected stocks as a starting point.  
+Plans are underway to expand coverage to all Nifty 50 stocks soon.
+
+- HDFCBANK  
+- RELIANCE  
+- TCS  
+- INFY  
+- SBIN  
+- WIPRO  
+- ICICIBANK  
+- TATASTEEL  
+- AXISBANK  
+- ASIANPAINT
+
+---
+
 ## 🛠️ Tech Stack
 
 | Component          | Technology                                 |
